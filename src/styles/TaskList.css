@@ -1,0 +1,9 @@
+.list > div {
+  padding: 10px;
+  margin: 10px;
+  background-color: grey;
+}
+
+ul {
+  list-style: none;
+}
