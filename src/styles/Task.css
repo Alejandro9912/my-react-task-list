@@ -1,8 +1,14 @@
+
 .container {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
 }
 
 .completed {
   margin-right: 8px;
+}
+
+.crossed {
+  text-decoration: line-through;
+  color: black;
 }
