@@ -1,17 +1,19 @@
+import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import TaskList from "./components/TaskList";
 
-const tasks = [
-  { id: 1, name: "Comprar la comida de mi perro", isCompleted: true },
-  { id: 2, name: "Ir al gimnasio", isCompleted: false },
-];
-
 function App() {
+  const [allTasks, setAllTasks] = useState([]);
+
+  const updateList = (newTaskList) => {
+    setAllTasks(newTaskList);
+  };
+
   return (
     <>
       <Header />
-      <TaskList tasks={tasks} />
+      <TaskList tasks={allTasks} updateTaskList={updateList} />
     </>
   );
 }
