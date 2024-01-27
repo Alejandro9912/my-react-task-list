@@ -1,8 +1,16 @@
 import { useState } from "react";
 import "../styles/Task.css";
 
-const Task = ({ id, name, isCompleted, updateTask, deleteTask }) => {
+const Task = ({
+  id,
+  name,
+  description,
+  isCompleted,
+  updateTask,
+  deleteTask,
+}) => {
   const [taskName, setTaskName] = useState(name);
+  const [taskDescription, setTaskDescription] = useState(description);
   const [taskIsCompleted, setTaskIsCompleted] = useState(isCompleted);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -20,17 +28,21 @@ const Task = ({ id, name, isCompleted, updateTask, deleteTask }) => {
 
   const handleSave = () => {
     setIsEditing(false);
-    updateTask(id, taskName, taskIsCompleted);
+    updateTask(id, taskName, taskDescription, taskIsCompleted);
     // Puedes enviar la nueva tarea al componente padre aquí si es necesario
   };
 
   const handleCancelEdit = () => {
     setIsEditing(false);
     setTaskName(name);
+    setTaskDescription(description);
   };
 
-  const handleChange = (event) => {
+  const handleChangeName = (event) => {
     setTaskName(event.target.value);
+  };
+  const handleChangeDescription = (event) => {
+    setTaskDescription(event.target.value);
   };
 
   return (
@@ -41,14 +53,27 @@ const Task = ({ id, name, isCompleted, updateTask, deleteTask }) => {
         </button>
         {isEditing ? (
           <>
-            <input type="text" value={taskName} onChange={handleChange} />
-            <button onClick={handleSave}>Ok</button>
-            <button onClick={handleCancelEdit}>Cancel</button>
+            <form action="">
+              <input type="text" value={taskName} onChange={handleChangeName} />
+              <input
+                type="text"
+                value={taskDescription}
+                onChange={handleChangeDescription}
+              />
+              <button onClick={handleSave}>Ok</button>
+              <button onClick={handleCancelEdit}>Cancel</button>
+            </form>
           </>
         ) : (
           <>
+            <span
+              className={`completed ${taskIsCompleted ? "crossed" : ""}`}
+              style={{ fontWeight: "bold" }}
+            >
+              {taskName}:
+            </span>
             <span className={`completed ${taskIsCompleted ? "crossed" : ""}`}>
-              {taskName}
+              {taskDescription}
             </span>
             <button className="completed" onClick={handleDelete}>
               ✖️

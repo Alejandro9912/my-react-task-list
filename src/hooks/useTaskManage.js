@@ -22,7 +22,7 @@ const useTaskManage = () => {
     return createnewTaskId;
   };
 
-  const createTask = (taskName) => {
+  const createTask = (taskName, taskDescription) => {
     if (taskName.trim() === "") {
       return;
     }
@@ -32,6 +32,7 @@ const useTaskManage = () => {
     let newTask = {
       id: newTaskId,
       name: taskName,
+      description: taskDescription,
       isCompleted: false,
     };
 
@@ -46,10 +47,15 @@ const useTaskManage = () => {
     saveTasksToLocalStorage(updatedTasks);
   };
 
-  const updateTask = (taskId, taskName, updateIsCompleted) => {
+  const updateTask = (taskId, taskName, taskDescription, updateIsCompleted) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId
-        ? { ...task, name: taskName, isCompleted: updateIsCompleted }
+        ? {
+            ...task,
+            name: taskName,
+            description: taskDescription,
+            isCompleted: updateIsCompleted,
+          }
         : task
     );
     setTasks(updatedTasks);

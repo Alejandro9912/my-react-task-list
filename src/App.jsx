@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Header />
-      <TaskList tasks={allTasks} updateTaskList={updateList} />
+      {<TaskList tasks={allTasks} updateTaskList={updateList} />}
     </>
   );
 }
