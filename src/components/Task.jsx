@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/Task.css";
+import { useForm } from "react-hook-form";
 
 const Task = ({
   id,
@@ -9,10 +10,15 @@ const Task = ({
   updateTask,
   deleteTask,
 }) => {
-  const [taskName, setTaskName] = useState(name);
-  const [taskDescription, setTaskDescription] = useState(description);
   const [taskIsCompleted, setTaskIsCompleted] = useState(isCompleted);
   const [isEditing, setIsEditing] = useState(false);
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isValid },
+    watch,
+  } = useForm({ mode: "onChange" });
 
   const handleDelete = () => {
     console.log(id);
@@ -26,23 +32,14 @@ const Task = ({
     setIsEditing(true);
   };
 
-  const handleSave = () => {
-    setIsEditing(false);
-    updateTask(id, taskName, taskDescription, taskIsCompleted);
-    // Puedes enviar la nueva tarea al componente padre aquí si es necesario
-  };
-
   const handleCancelEdit = () => {
     setIsEditing(false);
-    setTaskName(name);
-    setTaskDescription(description);
+    updateTask(id, name, description, isCompleted);
   };
 
-  const handleChangeName = (event) => {
-    setTaskName(event.target.value);
-  };
-  const handleChangeDescription = (event) => {
-    setTaskDescription(event.target.value);
+  const onSumbit = () => {
+    setIsEditing(false);
+    updateTask(id, watch("taskName"), watch("taskDescription"), isCompleted);
   };
 
   return (
@@ -53,15 +50,35 @@ const Task = ({
         </button>
         {isEditing ? (
           <>
-            <form action="">
-              <input type="text" value={taskName} onChange={handleChangeName} />
+            <form onSubmit={handleSubmit(onSumbit)}>
               <input
                 type="text"
-                value={taskDescription}
-                onChange={handleChangeDescription}
+                defaultValue={name}
+                {...register("taskName", {
+                  required: {
+                    value: true,
+                    message: "Task name is required",
+                  },
+                  minLength: {
+                    value: 3,
+                    message: "Min 3 characters",
+                  },
+                })}
               />
-              <button onClick={handleSave}>Ok</button>
-              <button onClick={handleCancelEdit}>Cancel</button>
+              {errors.taskName && (
+                <span style={{ color: "red" }}>{errors.taskName.message}</span>
+              )}
+              <input
+                type="text"
+                defaultValue={description}
+                {...register("taskDescription")}
+              />
+              <button type="submit" disabled={!isValid}>
+                Ok
+              </button>
+              <button type="button" onClick={handleCancelEdit}>
+                Cancel
+              </button>
             </form>
           </>
         ) : (
@@ -70,20 +87,21 @@ const Task = ({
               className={`completed ${taskIsCompleted ? "crossed" : ""}`}
               style={{ fontWeight: "bold" }}
             >
-              {taskName}:
+              {name}:
             </span>
             <span className={`completed ${taskIsCompleted ? "crossed" : ""}`}>
-              {taskDescription}
+              {description}
             </span>
-            <button className="completed" onClick={handleDelete}>
-              ✖️
-            </button>
             <button className="completed" onClick={handleEdit}>
               🖋️
+            </button>
+            <button className="completed" onClick={handleDelete}>
+              ✖️
             </button>
           </>
         )}
       </li>
+      {/* <pre style={{ color: "red" }}>{JSON.stringify(watch(), null, 2)}</pre> */}
     </div>
   );
 };
