@@ -1,19 +1,21 @@
-import { useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
-import TaskList from "./components/TaskList";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Tasks } from "./pages/Tasks";
+import { AbousUs } from "./pages/AbousUs";
+import { Menu } from "./components/Menu";
 
 function App() {
-  const [allTasks, setAllTasks] = useState([]);
-
-  const updateList = (newTaskList) => {
-    setAllTasks(newTaskList);
-  };
-
   return (
     <>
-      <Header />
-      {<TaskList tasks={allTasks} updateTaskList={updateList} />}
+      <BrowserRouter>
+      <Menu/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/about-us" element={<AbousUs />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
