@@ -1,10 +1,18 @@
 import { Flex, ListItem, UnorderedList } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { FaMoon, FaRegSun } from "react-icons/fa";
 
 export const Menu = () => {
+  
   return (
-    <Flex justifyContent="space-around" p={4} bg="#10454F">
+    <Flex
+      justifyContent="space-around"
+      p={4}
+      bg={
+        localStorage.getItem("chakra-ui-color-mode") === "light"
+          ? "#10454F"
+          : "#404040"
+      }
+    >
       <UnorderedList
         display="flex"
         listStyleType="none"
@@ -13,18 +21,32 @@ export const Menu = () => {
         fontFamily="Protest Revolution"
         fontSize={30}
       >
-        <ListItem>
+        <ListItem
+          color={
+            localStorage.getItem("chakra-ui-color-mode") === "light"
+              ? "whitesmoke"
+              : "grey"
+          }
+        >
           <LinkWrapper to="/">Home</LinkWrapper>
         </ListItem>
-        <ListItem>
+        <ListItem
+          color={
+            localStorage.getItem("chakra-ui-color-mode") === "light"
+              ? "whitesmoke"
+              : "grey"
+          }
+        >
           <LinkWrapper to="/tasks">Tasks</LinkWrapper>
         </ListItem>
-        <ListItem>
+        <ListItem
+          color={
+            localStorage.getItem("chakra-ui-color-mode") === "light"
+              ? "whitesmoke"
+              : "grey"
+          }
+        >
           <LinkWrapper to="/about-us">About Us</LinkWrapper>
-        </ListItem>
-        <ListItem>
-          <FaMoon />
-          <FaRegSun />
         </ListItem>
       </UnorderedList>
     </Flex>
@@ -36,7 +58,6 @@ const LinkWrapper = ({ to, children }) => (
     to={to}
     style={{
       textDecoration: "none",
-      color: "white",
       padding: "8px",
       margin: "0 10px",
       borderRadius: "4px",

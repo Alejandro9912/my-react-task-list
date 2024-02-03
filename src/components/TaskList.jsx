@@ -35,7 +35,7 @@ const TaskList = () => {
             w="20%"
             type="text"
             placeholder="Add Task"
-            _placeholder={{ color: "black" }}
+            _placeholder={{ color: "white" }}
             ref={inputNameRef}
             {...register("taskName", {
               required: {
@@ -53,7 +53,7 @@ const TaskList = () => {
             w="60%"
             type="text"
             placeholder="Add Description"
-            _placeholder={{ color: "black" }}
+            _placeholder={{ color: "white" }}
             ref={inputDescriptionRef}
             {...register("taskDescription")}
           />
@@ -62,7 +62,11 @@ const TaskList = () => {
             disabled={!isValid}
             w="10%"
             m={4}
-            bg={"#BDE038"}
+            bg={
+              localStorage.getItem("chakra-ui-color-mode") === "light"
+                ? "#BDE038"
+                : "#13F2A1"
+            }
           >
             +
           </Button>

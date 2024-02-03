@@ -17,7 +17,11 @@ export const Tasks = () => {
       flexDirection="column"
       h="70%"
       w="90%"
-      bg="#818274"
+      bg={
+        localStorage.getItem("chakra-ui-color-mode") === "light"
+          ? "#818274"
+          : "#404040"
+      }
       borderRadius={25}
     >
       <Header />

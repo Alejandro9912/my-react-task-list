@@ -18,19 +18,54 @@ export const AbousUs = () => {
       h="90%"
       w="60%"
     >
-      <Heading as="h1" size="xl" mb={4}>
+      <Heading
+        as="h1"
+        size="xl"
+        mb={4}
+        color={
+          localStorage.getItem("chakra-ui-color-mode") === "light"
+            ? "whitesmoke"
+            : "grey"
+        }
+      >
         About Us
       </Heading>
-      <Text mb={4} textAlign={"center"}>
+      <Text
+        mb={4}
+        textAlign={"center"}
+        color={
+          localStorage.getItem("chakra-ui-color-mode") === "light"
+            ? "whitesmoke"
+            : "grey"
+        }
+      >
         ¡Bienvenido a ToDo App, tu aplicación de gestión de tareas favorita!
         Nuestra aplicación está diseñada para ayudarte a organizar tus tareas
         diarias de manera eficiente y mantener un seguimiento de tus
         responsabilidades.
       </Text>
-      <Heading as="h2" size="lg" mb={2}>
+      <Heading
+        as="h2"
+        size="lg"
+        mb={2}
+        color={
+          localStorage.getItem("chakra-ui-color-mode") === "light"
+            ? "whitesmoke"
+            : "grey"
+        }
+      >
         Funcionalidades Clave:
       </Heading>
-      <UnorderedList mb={4} styleType="none" textAlign={"justify"}>
+      <UnorderedList
+        mb={4}
+        styleType="none"
+        textAlign={"justify"}
+        color={
+          localStorage.getItem("chakra-ui-color-mode") === "light"
+            ? "whitesmoke"
+            : "grey"
+        }
+      >
         <ListItem>
           <strong>Lista de Tareas:</strong> Utiliza la página de "Tasks" para
           ver, agregar, editar y eliminar tareas. La lista de tareas se
@@ -56,10 +91,28 @@ export const AbousUs = () => {
           moverte entre las páginas de "Home", "Tasks" y "About Us".
         </ListItem>
       </UnorderedList>
-      <Heading as="h2" size="lg" mb={2}>
+      <Heading
+        as="h2"
+        size="lg"
+        mb={2}
+        color={
+          localStorage.getItem("chakra-ui-color-mode") === "light"
+            ? "whitesmoke"
+            : "grey"
+        }
+      >
         Tecnologías Utilizadas:
       </Heading>
-      <UnorderedList mb={4} styleType="none" textAlign={"center"}>
+      <UnorderedList
+        mb={4}
+        styleType="none"
+        textAlign={"center"}
+        color={
+          localStorage.getItem("chakra-ui-color-mode") === "light"
+            ? "whitesmoke"
+            : "grey"
+        }
+      >
         <ListItem>
           <Flex justifyContent={"center"}>
             <Link href="https://es.react.dev" justifyItems={"center"}>
@@ -72,7 +125,14 @@ export const AbousUs = () => {
         <ListItem>LocalStorage para almacenamiento local</ListItem>
         {/* Agrega otras tecnologías utilizadas en tu aplicación */}
       </UnorderedList>
-      <Text textAlign={"center"}>
+      <Text
+        textAlign={"center"}
+        color={
+          localStorage.getItem("chakra-ui-color-mode") === "light"
+            ? "whitesmoke"
+            : "grey"
+        }
+      >
         Gracias por elegir ToDo App. Esperamos que disfrutes utilizando nuestra
         aplicación para mejorar tu productividad diaria.
       </Text>

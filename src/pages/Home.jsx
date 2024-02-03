@@ -8,7 +8,11 @@ export const Home = () => {
           size="xl"
           fontFamily="Protest Revolution"
           fontSize={120}
-          color={"#D2E8E3"}
+          color={
+            localStorage.getItem("chakra-ui-color-mode") === "light"
+              ? "whitesmoke"
+              : "grey"
+          }
         >
           Bienvenido
         </Heading>
@@ -16,7 +20,11 @@ export const Home = () => {
           size="xl"
           fontFamily="Protest Revolution"
           fontSize={120}
-          color={"#D2E8E3"}
+          color={
+            localStorage.getItem("chakra-ui-color-mode") === "light"
+              ? "whitesmoke"
+              : "grey"
+          }
         >
           A
         </Heading>
@@ -24,7 +32,11 @@ export const Home = () => {
           size="xl"
           fontFamily="Protest Revolution"
           fontSize={120}
-          color={"#D2E8E3"}
+          color={
+            localStorage.getItem("chakra-ui-color-mode") === "light"
+              ? "whitesmoke"
+              : "grey"
+          }
         >
           ToDo App
         </Heading>

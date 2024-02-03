@@ -51,7 +51,11 @@ const Task = ({
               className="completed"
               onClick={handleComplete}
               m={1}
-              bg={"#BDE038"}
+              bg={
+                localStorage.getItem("chakra-ui-color-mode") === "light"
+                  ? "#BDE038"
+                  : "#13F2A1"
+              }
             >
               {taskIsCompleted ? "◉" : "◯"}
             </Button>
@@ -96,10 +100,24 @@ const Task = ({
                       w="30%"
                       ml={2}
                       mr={2}
+                      bg={
+                        localStorage.getItem("chakra-ui-color-mode") === "light"
+                          ? "#BDE038"
+                          : "#13F2A1"
+                      }
                     >
                       Ok
                     </Button>
-                    <Button type="button" onClick={handleCancelEdit} w="30%">
+                    <Button
+                      type="button"
+                      onClick={handleCancelEdit}
+                      w="30%"
+                      bg={
+                        localStorage.getItem("chakra-ui-color-mode") === "light"
+                          ? "#BDE038"
+                          : "#13F2A1"
+                      }
+                    >
                       Cancel
                     </Button>
                   </Flex>
@@ -112,7 +130,11 @@ const Task = ({
                 w="75%"
                 justifyContent="flex-start"
                 alignItems="center"
-                bg={"#A3AB78"}
+                bg={
+                  localStorage.getItem("chakra-ui-color-mode") === "light"
+                    ? "#A3AB78"
+                    : "#95A612"
+                }
                 borderRadius={15}
               >
                 <Text
@@ -133,10 +155,15 @@ const Task = ({
               </Flex>
               <Flex w="20">
                 <Button
+                  isDisabled={taskIsCompleted}
                   className="completed"
                   onClick={handleEdit}
                   m={1}
-                  bg={"#BDE038"}
+                  bg={
+                    localStorage.getItem("chakra-ui-color-mode") === "light"
+                      ? "#BDE038"
+                      : "#13F2A1"
+                  }
                 >
                   🖋️
                 </Button>
@@ -144,7 +171,11 @@ const Task = ({
                   className="completed"
                   onClick={handleDelete}
                   m={1}
-                  bg={"#BDE038"}
+                  bg={
+                    localStorage.getItem("chakra-ui-color-mode") === "light"
+                      ? "#BDE038"
+                      : "#13F2A1"
+                  }
                 >
                   ✖️
                 </Button>
