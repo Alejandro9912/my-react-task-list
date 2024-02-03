@@ -1,8 +1,8 @@
 import Task from "./Task";
-import "../styles/TaskList.css";
 import { useRef } from "react";
 import useTaskManage from "../hooks/useTaskManage";
 import { useForm } from "react-hook-form";
+import { Button, Flex, Input, UnorderedList } from "@chakra-ui/react";
 
 const TaskList = () => {
   const { tasks, createTask, deleteTask, updateTask } = useTaskManage();
@@ -25,11 +25,17 @@ const TaskList = () => {
 
   return (
     <>
-      <div>
-        <form onSubmit={handleSubmit(addTask)}>
-          <input
+      <Flex w="100%" justifyContent="center" bg={""} alignItems={"center"}>
+        {errors.taskName && (
+          <span style={{ color: "red" }}>{errors.taskName.message}</span>
+        )}
+        <form onSubmit={handleSubmit(addTask)} style={{ width: "90%" }}>
+          <Input
+            m={2}
+            w="20%"
             type="text"
             placeholder="Add Task"
+            _placeholder={{ color: "white" }}
             ref={inputNameRef}
             {...register("taskName", {
               required: {
@@ -42,30 +48,44 @@ const TaskList = () => {
               },
             })}
           />
-          {errors.taskName && (
-            <span style={{ color: "red" }}>{errors.taskName.message}</span>
-          )}
-          <input
+
+          <Input
+            w="60%"
             type="text"
             placeholder="Add Description"
+            _placeholder={{ color: "white" }}
             ref={inputDescriptionRef}
             {...register("taskDescription")}
           />
-          <button type="submit" disabled={!isValid}>
+          <Button
+            type="submit"
+            disabled={!isValid}
+            w="10%"
+            m={4}
+            bg={
+              localStorage.getItem("chakra-ui-color-mode") === "light"
+                ? "#BDE038"
+                : "#13F2A1"
+            }
+          >
             +
-          </button>
+          </Button>
         </form>
-      </div>
-      <ul className="list">
-        {tasks.map((task) => (
-          <Task
-            key={task.id}
-            {...task}
-            updateTask={updateTask}
-            deleteTask={deleteTask}
-          />
-        ))}
-      </ul>
+      </Flex>
+      {
+        <Flex w="100%" alignItems={"center"} justifyContent={"center"}>
+          <UnorderedList className="list" w="100%">
+            {tasks.map((task) => (
+              <Task
+                key={task.id}
+                {...task}
+                updateTask={updateTask}
+                deleteTask={deleteTask}
+              />
+            ))}
+          </UnorderedList>
+        </Flex>
+      }
       {/* <pre style={{ color: "red" }}>{JSON.stringify(watch(), null, 2)}</pre> */}
     </>
   );
