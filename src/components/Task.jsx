@@ -1,5 +1,5 @@
+import { Button, Flex, Input, ListItem, Text } from "@chakra-ui/react";
 import { useState } from "react";
-import "../styles/Task.css";
 import { useForm } from "react-hook-form";
 
 const Task = ({
@@ -43,66 +43,118 @@ const Task = ({
   };
 
   return (
-    <div className="container">
-      <li>
-        <button className="completed" onClick={handleComplete}>
-          {taskIsCompleted ? "◉" : "◯"}
-        </button>
-        {isEditing ? (
-          <>
-            <form onSubmit={handleSubmit(onSumbit)}>
-              <input
-                type="text"
-                defaultValue={name}
-                {...register("taskName", {
-                  required: {
-                    value: true,
-                    message: "Task name is required",
-                  },
-                  minLength: {
-                    value: 3,
-                    message: "Min 3 characters",
-                  },
-                })}
-              />
-              {errors.taskName && (
-                <span style={{ color: "red" }}>{errors.taskName.message}</span>
-              )}
-              <input
-                type="text"
-                defaultValue={description}
-                {...register("taskDescription")}
-              />
-              <button type="submit" disabled={!isValid}>
-                Ok
-              </button>
-              <button type="button" onClick={handleCancelEdit}>
-                Cancel
-              </button>
-            </form>
-          </>
-        ) : (
-          <>
-            <span
-              className={`completed ${taskIsCompleted ? "crossed" : ""}`}
-              style={{ fontWeight: "bold" }}
+    <>
+      <ListItem m={2} listStyleType="none" bg="" borderRadius={10}>
+        <Flex w="100%">
+          <Flex w="7%" justifyContent="center">
+            <Button
+              className="completed"
+              onClick={handleComplete}
+              m={1}
+              bg={"#BDE038"}
             >
-              {name}:
-            </span>
-            <span className={`completed ${taskIsCompleted ? "crossed" : ""}`}>
-              {description}
-            </span>
-            <button className="completed" onClick={handleEdit}>
-              🖋️
-            </button>
-            <button className="completed" onClick={handleDelete}>
-              ✖️
-            </button>
-          </>
-        )}
-      </li>
+              {taskIsCompleted ? "◉" : "◯"}
+            </Button>
+          </Flex>
+          {isEditing ? (
+            <>
+              <form onSubmit={handleSubmit(onSumbit)} style={{ width: "90%" }}>
+                <Flex w="100%" justifyContent="center">
+                  <Flex w="78%" justifyContent="flex-start" alignItems="center">
+                    <Input
+                      type="text"
+                      defaultValue={name}
+                      w="20%"
+                      {...register("taskName", {
+                        required: {
+                          value: true,
+                          message: "Task name is required",
+                        },
+                        minLength: {
+                          value: 3,
+                          message: "Min 3 characters",
+                        },
+                      })}
+                    />
+                    {errors.taskName && (
+                      <span style={{ color: "red" }}>
+                        {errors.taskName.message}
+                      </span>
+                    )}
+                    <Input
+                      type="text"
+                      defaultValue={description}
+                      w="68%"
+                      ml={2}
+                      {...register("taskDescription")}
+                    />
+                  </Flex>
+                  <Flex w="20%" justifyContent="flex-end">
+                    <Button
+                      type="submit"
+                      disabled={!isValid}
+                      w="30%"
+                      ml={2}
+                      mr={2}
+                    >
+                      Ok
+                    </Button>
+                    <Button type="button" onClick={handleCancelEdit} w="30%">
+                      Cancel
+                    </Button>
+                  </Flex>
+                </Flex>
+              </form>
+            </>
+          ) : (
+            <>
+              <Flex
+                w="75%"
+                justifyContent="flex-start"
+                alignItems="center"
+                bg={"#A3AB78"}
+                borderRadius={15}
+              >
+                <Text
+                  display="inline-block"
+                  textDecoration={taskIsCompleted ? "line-through" : "none"}
+                  fontWeight="bold"
+                  mr={2}
+                  ml={2}
+                >
+                  {name}:
+                </Text>
+                <Text
+                  display="inline-block"
+                  textDecoration={taskIsCompleted ? "line-through" : "none"}
+                >
+                  {description}
+                </Text>
+              </Flex>
+              <Flex w="20">
+                <Button
+                  className="completed"
+                  onClick={handleEdit}
+                  m={1}
+                  bg={"#BDE038"}
+                >
+                  🖋️
+                </Button>
+                <Button
+                  className="completed"
+                  onClick={handleDelete}
+                  m={1}
+                  bg={"#BDE038"}
+                >
+                  ✖️
+                </Button>
+              </Flex>
+            </>
+          )}
+        </Flex>
+      </ListItem>
       {/* <pre style={{ color: "red" }}>{JSON.stringify(watch(), null, 2)}</pre> */}
-    </div>
+    </>
   );
 };
 

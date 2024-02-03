@@ -1,8 +1,11 @@
-import "../styles/Header.css";
+import { Heading } from "@chakra-ui/react";
+
 const Header = () => {
   return (
     <>
-      <h1>ToDo App</h1>
+      <Heading size="xl" fontFamily="Protest Revolution" fontSize={120}>
+        ToDo App
+      </Heading>
     </>
   );
 };
