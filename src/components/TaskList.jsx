@@ -68,7 +68,7 @@ const TaskList = () => {
                 : "#13F2A1"
             }
           >
-            +
+            ➕
           </Button>
         </form>
       </Flex>

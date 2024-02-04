@@ -56,6 +56,15 @@ const Task = ({
                   ? "#BDE038"
                   : "#13F2A1"
               }
+              textColor={
+                localStorage.getItem("chakra-ui-color-mode") === "light"
+                  ? taskIsCompleted
+                    ? "red.700"
+                    : ""
+                  : taskIsCompleted
+                  ? "black"
+                  : ""
+              }
             >
               {taskIsCompleted ? "◉" : "◯"}
             </Button>
@@ -133,7 +142,7 @@ const Task = ({
                 bg={
                   localStorage.getItem("chakra-ui-color-mode") === "light"
                     ? "#A3AB78"
-                    : "#95A612"
+                    : "GrayText"
                 }
                 borderRadius={15}
               >
@@ -141,6 +150,15 @@ const Task = ({
                   display="inline-block"
                   textDecoration={taskIsCompleted ? "line-through" : "none"}
                   fontWeight="bold"
+                  textColor={
+                    localStorage.getItem("chakra-ui-color-mode") === "light"
+                      ? taskIsCompleted
+                        ? "red.700"
+                        : ""
+                      : taskIsCompleted
+                      ? "black"
+                      : ""
+                  }
                   mr={2}
                   ml={2}
                 >
@@ -149,6 +167,15 @@ const Task = ({
                 <Text
                   display="inline-block"
                   textDecoration={taskIsCompleted ? "line-through" : "none"}
+                  textColor={
+                    localStorage.getItem("chakra-ui-color-mode") === "light"
+                      ? taskIsCompleted
+                        ? "red.700"
+                        : ""
+                      : taskIsCompleted
+                      ? "black"
+                      : ""
+                  }
                 >
                   {description}
                 </Text>
