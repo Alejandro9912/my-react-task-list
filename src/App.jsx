@@ -27,7 +27,6 @@ function App() {
             <Menu />
             {console.log(colorMode)}
             <IconButton
-            variant={'solid'}
               aria-label="Toggle dark mode"
               icon={
                 colorMode === "light" ? (
@@ -41,6 +40,7 @@ function App() {
               position="fixed"
               top="1rem"
               right="1rem"
+              bg={colorMode === "light" ? "white" : "black"}
             />
             <Flex
               flexGrow={1}
